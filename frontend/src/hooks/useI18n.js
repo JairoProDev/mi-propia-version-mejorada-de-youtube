@@ -1,12 +1,12 @@
 /**
  * @file useI18n.js
- * @description Hook personalizado para manejar internacionalización en MiTube
+ * @description Hook personalizado para manejar internacionalización en MiTubo
  * @author Tu Nombre
  * @version 1.0.0
  */
 
 import { useTranslation } from "react-i18next";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/userSlice";
 
@@ -19,6 +19,14 @@ const useI18n = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
+  const storedLanguage = useSelector((state) => state.user.language);
+
+  useEffect(() => {
+    // Al montar el componente, actualizar i18n con el idioma guardado en Redux
+    if (storedLanguage && i18n.language !== storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, [storedLanguage, i18n]);
 
   /**
    * Cambiar el idioma de la aplicación
@@ -41,20 +49,15 @@ const useI18n = () => {
         // Guardar preferencia en localStorage
         localStorage.setItem("i18nextLng", language);
 
-        // Si hay usuario autenticado, actualizar preferencia en redux
-        if (currentUser) {
-          dispatch(setLanguage(language));
-
-          // Aquí también se podría guardar la preferencia en el servidor
-          // si se implementa esa funcionalidad
-        }
+        // Actualizar el estado en Redux
+        dispatch(setLanguage(language));
       } catch (error) {
         console.error("Error al cambiar idioma:", error);
       } finally {
         setLoading(false);
       }
     },
-    [i18n, dispatch, currentUser]
+    [i18n, dispatch]
   );
 
   /**
@@ -62,7 +65,7 @@ const useI18n = () => {
    * @returns {string} Código del idioma actual
    */
   const getCurrentLanguage = useCallback(() => {
-    return i18n.language || "es";
+    return i18n.language || localStorage.getItem("i18nextLng") || "es";
   }, [i18n]);
 
   return {

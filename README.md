@@ -51,7 +51,7 @@ MiTube es una plataforma de compartición de videos inspirada en YouTube, desarr
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/mitube.git
+   git clone https://github.com/JairoProDev/mitube.git
    cd mitube
    ```
 
