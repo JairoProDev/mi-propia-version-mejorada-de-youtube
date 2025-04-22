@@ -1,6 +1,6 @@
 /**
  * @file Notification.js
- * @description Modelo para notificaciones de usuarios en MiTubo
+ * @description Model for user notifications in MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */
@@ -55,7 +55,7 @@ const NotificationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Índices para optimizar búsquedas
+// Indices for query optimization
 NotificationSchema.index({ recipientId: 1, read: 1 });
 NotificationSchema.index({ createdAt: -1 });
 

@@ -1,10 +1,10 @@
-# MiTubo - Clon Avanzado de YouTube
+# MiTube - Clon Avanzado de YouTube
 
-![MiTubo Logo](frontend/public/logo192.png)
+![MiTube Logo](frontend/public/logo192.png)
 
 ## Descripción
 
-MiTubo es una plataforma de compartición de videos inspirada en YouTube, desarrollada con tecnologías modernas como React, Node.js, MongoDB y Express. Este proyecto implementa todas las funcionalidades principales de YouTube con un enfoque en el rendimiento, la experiencia de usuario y un diseño moderno e intuitivo.
+MiTube es una plataforma de compartición de videos inspirada en YouTube, desarrollada con tecnologías modernas como React, Node.js, MongoDB y Express. Este proyecto implementa todas las funcionalidades principales de YouTube con un enfoque en el rendimiento, la experiencia de usuario y un diseño moderno e intuitivo.
 
 ## Características
 
@@ -51,8 +51,8 @@ MiTubo es una plataforma de compartición de videos inspirada en YouTube, desarr
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/mitubo.git
-   cd mitubo
+   git clone https://github.com/tu-usuario/mitube.git
+   cd mitube
    ```
 
 2. **Instalar dependencias del backend**
@@ -89,7 +89,7 @@ MiTubo es una plataforma de compartición de videos inspirada en YouTube, desarr
 ## Estructura del Proyecto
 
 ```
-mitubo/
+mitube/
 ├── frontend/            # Aplicación React
 │   ├── public/          # Archivos estáticos
 │   └── src/             # Código fuente
@@ -126,7 +126,7 @@ Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](L
 
 [Tu Nombre] - [tu.email@example.com]
 
-Enlace del Proyecto: [https://github.com/tu-usuario/mitubo](https://github.com/tu-usuario/mitubo)
+Enlace del Proyecto: [https://github.com/tu-usuario/mitube](https://github.com/tu-usuario/mitube)
 
 ## Agradecimientos
 

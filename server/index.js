@@ -1,6 +1,6 @@
 /**
  * @file index.js
- * @description Archivo principal del servidor para la API de MiTubo.
+ * @description Archivo principal del servidor para la API de MiTube.
  * @author Tu Nombre
  * @version 1.0.0
  */
@@ -31,6 +31,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8800;
 const MONGO_URI = process.env.MONGO || "mongodb://localhost:27017/mitubo";
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000";
+const JWT_SECRET = process.env.JWT_SECRET || "clave_secreta_predeterminada";
 
 /**
  * Conexión a MongoDB
@@ -38,13 +39,15 @@ const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000";
  */
 const connectDB = async () => {
   try {
-    await mongoose.connect(MONGO_URI, {
-      // Las opciones de conexión ya no son necesarias en Mongoose 6+
-    });
+    console.log("Intentando conectar a MongoDB:", MONGO_URI);
+    await mongoose.connect(MONGO_URI);
     console.log("✅ MongoDB conectado exitosamente");
   } catch (err) {
     console.error("❌ Error al conectar a MongoDB:", err.message);
-    process.exit(1);
+    // No cerrar la aplicación si falla la conexión en entorno de desarrollo
+    if (process.env.NODE_ENV === "production") {
+      process.exit(1);
+    }
   }
 };
 
@@ -104,7 +107,7 @@ app.use("/api/stats", statsRoutes);
 // Ruta raíz para comprobar si la API está funcionando
 app.get("/", (req, res) => {
   res.json({
-    message: "Bienvenido a la API de MiTubo",
+    message: "Bienvenido a la API de MiTube",
     status: "online",
     version: "1.0.0",
   });
@@ -134,24 +137,33 @@ app.use("*", (req, res) => {
 });
 
 // Iniciar el servidor
-server.listen(PORT, async () => {
-  try {
-    await connectDB();
-    console.log(`✅ Servidor ejecutándose en http://localhost:${PORT}`);
-  } catch (error) {
-    console.error("❌ Error al iniciar el servidor:", error.message);
-  }
-});
+connectDB()
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`✅ Servidor ejecutándose en http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ Error al iniciar la base de datos:", err);
+    // Iniciamos el servidor aunque la BD falle, para no bloquear el desarrollo del frontend
+    server.listen(PORT, () => {
+      console.log(
+        `⚠️ Servidor ejecutándose en http://localhost:${PORT} (sin base de datos)`
+      );
+    });
+  });
 
 // Manejo de errores no capturados
 process.on("unhandledRejection", (err) => {
   console.error("❌ Error no manejado: ", err.message);
   console.error(err.stack);
 
-  // Cerrar servidor y salir del proceso
-  server.close(() => {
-    process.exit(1);
-  });
+  if (process.env.NODE_ENV === "production") {
+    // Cerrar servidor y salir del proceso sólo en producción
+    server.close(() => {
+      process.exit(1);
+    });
+  }
 });
 
 export { io };

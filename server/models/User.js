@@ -1,6 +1,6 @@
 /**
  * @file User.js
- * @description Modelo para usuarios/canales de MiTubo
+ * @description Modelo para usuarios/canales de MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */

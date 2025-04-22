@@ -19,6 +19,8 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
+import MiTubeLogo from "../img/logo.png";
+import useI18n from "../hooks/useI18n";
 
 const Container = styled.div`
   flex: 1.5;
@@ -94,25 +96,27 @@ const Title = styled.h2`
 
 const Menu = ({ darkMode, setDarkMode }) => {
   const { currentUser } = useSelector((state) => state.user);
+  const { t } = useI18n();
+  
   return (
     <Container>
       <Link to="/" style={{ textDecoration: "none" }}>
         <Logo>
-          <Image src="https://raw.githubusercontent.com/safak/youtube2022/react-video-ui/src/img/logo.png" />
-          YouTube
+          <Image src={MiTubeLogo} />
+          MiTube
         </Logo>
       </Link>
       <ContainerWrapper>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <HomeIcon />
-            Home
+            {t('home')}
           </Item>
         </Link>
         <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <ExploreOutlinedIcon />
-            Explore
+            {t('explore')}
           </Item>
         </Link>
         <Link
@@ -121,23 +125,23 @@ const Menu = ({ darkMode, setDarkMode }) => {
         >
           <Item>
             <SubscriptionsOutlinedIcon />
-            Subscriptions
+            {t('subscriptions')}
           </Item>
         </Link>
         <Hr />
         <Item>
           <VideoLibraryOutlinedIcon />
-          Library
+          {t('library')}
         </Item>
         <Item>
           <HistoryOutlinedIcon />
-          History
+          {t('history')}
         </Item>
         <Hr />
         {!currentUser && (
           <>
           <Login>
-            Sign in to like videos, comment, and subscribe.
+            {t('dontHaveAccount')}
             <Link
               to="/signin"
               style={{ textDecoration: "none", color: "inherit" }}
@@ -145,54 +149,54 @@ const Menu = ({ darkMode, setDarkMode }) => {
               <Button>
                 {" "}
                 <AccountCircleOutlinedIcon />
-                SIGN IN
+                {t('signup')}
               </Button>
             </Link>
           </Login>
         <Hr />
         </>
         )}
-        <Title>BEST OF YOUTUBE</Title>
+        <Title>{t('bestOfMiTube')}</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
-          Music
+          {t('music')}
         </Item>
         <Item>
           <SportsBasketballOutlinedIcon />
-          Sports
+          {t('sports')}
         </Item>
         <Item>
           <SportsEsportsOutlinedIcon />
-          Gaming
+          {t('gaming')}
         </Item>
         <Item>
           <MovieOutlinedIcon />
-          Movies
+          {t('movies')}
         </Item>
         <Item>
           <ArticleOutlinedIcon />
-          News
+          {t('news')}
         </Item>
         <Item>
           <LiveTvOutlinedIcon />
-          Live
+          {t('live')}
         </Item>
         <Hr />
         <Item>
           <SettingsOutlinedIcon />
-          Settings
+          {t('settings')}
         </Item>
         <Item>
           <FlagOutlinedIcon />
-          Report
+          {t('report')}
         </Item>
         <Item>
           <HelpOutlineOutlinedIcon />
-          Help
+          {t('help')}
         </Item>
         <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
-          {darkMode ? "Light" : "Dark"} Mode
+          {darkMode ? t('lightMode') : t('darkMode')}
         </Item>
         <Space />
       </ContainerWrapper>

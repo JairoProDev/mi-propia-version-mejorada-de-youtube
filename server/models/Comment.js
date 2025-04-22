@@ -1,6 +1,6 @@
 /**
  * @file Comment.js
- * @description Modelo para comentarios de videos en MiTubo
+ * @description Modelo para comentarios de videos en MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */

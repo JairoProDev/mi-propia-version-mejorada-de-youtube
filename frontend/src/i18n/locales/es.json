@@ -66,7 +66,7 @@
     "settings": "Configuración",
     "help": "Ayuda",
     "feedback": "Enviar comentarios",
-    "studio": "MiTubo Studio",
+    "studio": "MiTube Studio",
     "yourChannel": "Tu canal",
     "playlists": "Listas de reproducción"
   },
@@ -201,7 +201,7 @@
     "settingsSaved": "Configuración guardada correctamente"
   },
   "creator": {
-    "studio": "MiTubo Studio",
+    "studio": "MiTube Studio",
     "dashboard": "Panel",
     "videos": "Videos",
     "analytics": "Análisis",

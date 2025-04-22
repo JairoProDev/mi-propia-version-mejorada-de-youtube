@@ -1,19 +1,19 @@
 /**
  * @file useAuth.js
- * @description Hook personalizado para manejar la autenticación en MiTubo
+ * @description Hook personalizado para manejar la autenticación en MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */
 
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { 
-  loginStart, 
-  loginSuccess, 
-  loginFailure, 
-  logout as logoutAction 
-} from '../redux/userSlice';
-import { authService } from '../services/api';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  logout as logoutAction,
+} from "../redux/userSlice";
+import { authService } from "../services/api";
 
 /**
  * Hook de autenticación que proporciona métodos y estado para el manejo de usuarios
@@ -34,20 +34,21 @@ const useAuth = () => {
     setLoading(true);
     setError(null);
     dispatch(loginStart());
-    
+
     try {
       const { data } = await authService.signin(credentials);
-      
+
       // Guardar token
       if (data.token) {
-        localStorage.setItem('access_token', data.token);
+        localStorage.setItem("access_token", data.token);
       }
-      
+
       dispatch(loginSuccess(data.user));
       setLoading(false);
       return data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Error al iniciar sesión';
+      const errorMessage =
+        err.response?.data?.message || "Error al iniciar sesión";
       dispatch(loginFailure(errorMessage));
       setError(errorMessage);
       setLoading(false);
@@ -63,13 +64,14 @@ const useAuth = () => {
   const register = async (userData) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const { data } = await authService.signup(userData);
       setLoading(false);
       return data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Error al registrar usuario';
+      const errorMessage =
+        err.response?.data?.message || "Error al registrar usuario";
       setError(errorMessage);
       setLoading(false);
       throw err;
@@ -85,7 +87,7 @@ const useAuth = () => {
       await authService.logout();
       dispatch(logoutAction());
     } catch (err) {
-      console.error('Error al cerrar sesión:', err);
+      console.error("Error al cerrar sesión:", err);
       // Cerrar sesión localmente aunque haya error en el servidor
       dispatch(logoutAction());
     }
@@ -96,19 +98,20 @@ const useAuth = () => {
    * @returns {Promise<Object>} Datos del usuario actual
    */
   const fetchCurrentUser = async () => {
-    if (!localStorage.getItem('access_token')) {
+    if (!localStorage.getItem("access_token")) {
       return null;
     }
-    
+
     setLoading(true);
-    
+
     try {
       const { data } = await authService.getCurrentUser();
       dispatch(loginSuccess(data));
       setLoading(false);
       return data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Error al obtener usuario';
+      const errorMessage =
+        err.response?.data?.message || "Error al obtener usuario";
       dispatch(loginFailure(errorMessage));
       setError(errorMessage);
       setLoading(false);
@@ -118,7 +121,7 @@ const useAuth = () => {
 
   // Cargar usuario al montar el componente si existe un token
   useEffect(() => {
-    if (localStorage.getItem('access_token') && !currentUser) {
+    if (localStorage.getItem("access_token") && !currentUser) {
       fetchCurrentUser();
     }
   }, []);
@@ -131,8 +134,8 @@ const useAuth = () => {
     register,
     logout,
     fetchCurrentUser,
-    isAuthenticated: !!currentUser
+    isAuthenticated: !!currentUser,
   };
 };
 
-export default useAuth; 
+export default useAuth;

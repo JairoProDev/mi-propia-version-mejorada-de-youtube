@@ -1,6 +1,6 @@
 /**
  * @file Video.js
- * @description Modelo para videos de MiTubo
+ * @description Modelo para videos de MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */

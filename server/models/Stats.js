@@ -1,6 +1,6 @@
 /**
  * @file Stats.js
- * @description Modelo para estadísticas de usuarios y videos en MiTubo
+ * @description Modelo para estadísticas de usuarios y videos en MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */

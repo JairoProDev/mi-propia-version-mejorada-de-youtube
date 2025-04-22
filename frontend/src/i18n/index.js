@@ -1,16 +1,16 @@
 /**
  * @file index.js
- * @description Configuración de internacionalización (i18n) para MiTubo
+ * @description Configuración de internacionalización (i18n) para MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */
 
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
-import esTranslations from './locales/es.json';
-import enTranslations from './locales/en.json';
+import esTranslations from "./locales/es.json";
+import enTranslations from "./locales/en.json";
 
 // Configuración de i18next
 i18n
@@ -23,27 +23,27 @@ i18n
     // Recursos (traducciones)
     resources: {
       es: {
-        translation: esTranslations
+        translation: esTranslations,
       },
       en: {
-        translation: enTranslations
-      }
+        translation: enTranslations,
+      },
     },
     // Idioma predeterminado
-    fallbackLng: 'es',
+    fallbackLng: "es",
     // Detectar idioma del navegador
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage']
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
     },
     // Configuración de interpolación
     interpolation: {
-      escapeValue: false // No escapar HTML
+      escapeValue: false, // No escapar HTML
     },
     // Configuración de React
     react: {
-      useSuspense: false
-    }
+      useSuspense: false,
+    },
   });
 
-export default i18n; 
+export default i18n;

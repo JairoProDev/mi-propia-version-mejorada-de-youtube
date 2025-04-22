@@ -1,6 +1,6 @@
 /**
  * @file Playlist.js
- * @description Modelo para listas de reproducción de MiTubo
+ * @description Modelo para listas de reproducción de MiTube
  * @author Tu Nombre
  * @version 1.0.0
  */

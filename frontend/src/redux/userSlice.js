@@ -4,6 +4,7 @@ const initialState = {
   currentUser: null,
   loading: false,
   error: false,
+  language: localStorage.getItem("i18nextLng") || "en",
 };
 
 export const userSlice = createSlice({
@@ -38,10 +39,19 @@ export const userSlice = createSlice({
         state.currentUser.subscribedUsers.push(action.payload);
       }
     },
+    setLanguage: (state, action) => {
+      state.language = action.payload;
+    },
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout, subscription } =
-  userSlice.actions;
+export const { 
+  loginStart, 
+  loginSuccess, 
+  loginFailure, 
+  logout, 
+  subscription,
+  setLanguage 
+} = userSlice.actions;
 
 export default userSlice.reducer;
