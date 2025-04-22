@@ -35,7 +35,7 @@ export default {
   yourVideos: "Tus videos",
   watchLater: "Ver más tarde",
   likedVideos: "Videos que me gustan",
-  bestOfMiTube: "LO MEJOR DE MITUBO",
+  bestOfMiTube: "LO MEJOR DE MITUBE",
   music: "Música",
   sports: "Deportes",
   gaming: "Videojuegos",

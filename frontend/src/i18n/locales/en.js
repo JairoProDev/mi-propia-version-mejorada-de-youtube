@@ -35,7 +35,7 @@ export default {
   yourVideos: "Your videos",
   watchLater: "Watch later",
   likedVideos: "Liked videos",
-  bestOfMiTube: "BEST OF MITUBO",
+  bestOfMiTube: "BEST OF MITUBE",
   music: "Music",
   sports: "Sports",
   gaming: "Gaming",
